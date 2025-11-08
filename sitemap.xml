@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+    <!-- Main Page -->
+    <url>
+        <loc>https://confidence-kobe.github.io/Himalaya/</loc>
+        <lastmod>2025-11-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link
+            rel="alternate"
+            hreflang="zh-CN"
+            href="https://confidence-kobe.github.io/Himalaya/"/>
+        <xhtml:link
+            rel="alternate"
+            hreflang="bo"
+            href="https://confidence-kobe.github.io/Himalaya/"/>
+    </url>
+
+    <!-- Index Page -->
+    <url>
+        <loc>https://confidence-kobe.github.io/Himalaya/index.html</loc>
+        <lastmod>2025-11-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Manifest -->
+    <url>
+        <loc>https://confidence-kobe.github.io/Himalaya/manifest.json</loc>
+        <lastmod>2025-11-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+</urlset>

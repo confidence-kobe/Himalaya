@@ -1,0 +1,6 @@
+Contact: https://github.com/confidence-kobe/Himalaya/security/advisories/new
+Expires: 2026-11-08T00:00:00.000Z
+Preferred-Languages: zh, bo, en
+Canonical: https://confidence-kobe.github.io/Himalaya/.well-known/security.txt
+Policy: https://github.com/confidence-kobe/Himalaya/blob/main/SECURITY.md
+Acknowledgments: https://github.com/confidence-kobe/Himalaya/blob/main/SECURITY.md#-security-acknowledgments

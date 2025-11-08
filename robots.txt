@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://confidence-kobe.github.io/Himalaya/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Specific rules
+Allow: /index.html
+Allow: /manifest.json
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+
+# Disallow unnecessary files
+Disallow: /sw.js
+Disallow: /.git/
+Disallow: /.gitignore

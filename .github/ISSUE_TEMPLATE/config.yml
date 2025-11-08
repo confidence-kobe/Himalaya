@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/confidence-kobe/Himalaya/discussions
+    about: 提问、分享想法或与社区交流
+  - name: 📖 Documentation
+    url: https://github.com/confidence-kobe/Himalaya#readme
+    about: 查看项目文档和使用指南
+  - name: 🤝 Contributing Guide
+    url: https://github.com/confidence-kobe/Himalaya/blob/main/CONTRIBUTING.md
+    about: 了解如何为项目做贡献

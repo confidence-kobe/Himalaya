@@ -1,8 +1,38 @@
 # བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར། Himalaya 藏文打字练习
 
+<div align="center">
+
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/confidence-kobe/Himalaya)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-enabled-purple.svg)](manifest.json)
+[![Deploy](https://github.com/confidence-kobe/Himalaya/actions/workflows/deploy.yml/badge.svg)](https://github.com/confidence-kobe/Himalaya/actions/workflows/deploy.yml)
+
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-live-success.svg)](https://confidence-kobe.github.io/Himalaya/)
+[![Code Size](https://img.shields.io/github/languages/code-size/confidence-kobe/Himalaya)](https://github.com/confidence-kobe/Himalaya)
+[![Last Commit](https://img.shields.io/github/last-commit/confidence-kobe/Himalaya)](https://github.com/confidence-kobe/Himalaya/commits/main)
+[![Maintained](https://img.shields.io/badge/Maintained%3F-yes-success.svg)](https://github.com/confidence-kobe/Himalaya/graphs/commit-activity)
+
+[![GitHub Issues](https://img.shields.io/github/issues/confidence-kobe/Himalaya)](https://github.com/confidence-kobe/Himalaya/issues)
+[![GitHub PRs](https://img.shields.io/github/issues-pr/confidence-kobe/Himalaya)](https://github.com/confidence-kobe/Himalaya/pulls)
+[![GitHub Stars](https://img.shields.io/github/stars/confidence-kobe/Himalaya?style=social)](https://github.com/confidence-kobe/Himalaya/stargazers)
+[![GitHub Forks](https://img.shields.io/github/forks/confidence-kobe/Himalaya?style=social)](https://github.com/confidence-kobe/Himalaya/network/members)
+
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![HTML5](https://img.shields.io/badge/HTML5-semantic-orange.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-modern-blue.svg)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/confidence-kobe/Himalaya/blob/main/package.json)
+
+[![Platform](https://img.shields.io/badge/platform-web-lightgrey.svg)](https://confidence-kobe.github.io/Himalaya/)
+[![Browser](https://img.shields.io/badge/browser-Chrome%20%7C%20Firefox%20%7C%20Safari%20%7C%20Edge-blue.svg)](https://github.com/confidence-kobe/Himalaya#-浏览器兼容性)
+[![Mobile](https://img.shields.io/badge/mobile-iOS%20%7C%20Android-success.svg)](https://confidence-kobe.github.io/Himalaya/)
+[![Offline](https://img.shields.io/badge/offline-supported-blueviolet.svg)](https://github.com/confidence-kobe/Himalaya#-pwa特性)
+
+[![Security](https://img.shields.io/badge/security-policy-red.svg)](SECURITY.md)
+[![Contributing](https://img.shields.io/badge/contributing-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Changelog](https://img.shields.io/badge/changelog-available-blue.svg)](CHANGELOG.md)
+[![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-yes-informational.svg)](CONTRIBUTING.md#-code-of-conduct)
+
+</div>
 
 一个现代化、功能完整的藏文打字练习渐进式Web应用（PWA），帮助用户提高藏文输入速度和准确率。
 
