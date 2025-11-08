@@ -1,14 +1,14 @@
 /**
  * Tibetan Typing Practice Application
- * Production-ready version with PWA support, dark mode, history tracking, and achievements
- * Version: 1.0.0
+ * Production-ready version with PWA support, dark mode, history tracking, achievements, and user authentication
+ * Version: 1.1.0
  */
 
 // ========================================
 // Constants and Configuration
 // ========================================
 const CONFIG = {
-    VERSION: '1.0.0',
+    VERSION: '1.1.0',
     STORAGE_KEYS: {
         HISTORY: 'tibetan_typing_history',
         ACHIEVEMENTS: 'tibetan_typing_achievements',

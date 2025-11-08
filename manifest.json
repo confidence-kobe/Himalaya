@@ -1,7 +1,8 @@
 {
   "name": "བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར། - 藏文打字练习",
   "short_name": "藏文打字",
-  "description": "专业的藏文打字练习应用，提高藏文输入速度和准确率",
+  "version": "1.1.0",
+  "description": "专业的藏文打字练习应用，提高藏文输入速度和准确率。支持云同步、跨设备数据同步、用户认证等功能。",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#667eea",

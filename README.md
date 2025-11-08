@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/confidence-kobe/Himalaya)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/confidence-kobe/Himalaya)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![PWA](https://img.shields.io/badge/PWA-enabled-purple.svg)](manifest.json)
 [![Deploy](https://github.com/confidence-kobe/Himalaya/actions/workflows/deploy.yml/badge.svg)](https://github.com/confidence-kobe/Himalaya/actions/workflows/deploy.yml)

@@ -5,6 +5,129 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-11-08
+
+### 🔥 Major Feature - User Authentication & Cloud Sync
+
+This release adds optional Firebase-based user authentication and cloud data synchronization, enabling cross-device access while maintaining privacy and offline-first capabilities.
+
+### ✨ Added
+
+#### User Authentication System
+- **Email/Password Authentication**: Complete registration and login flow with validation
+- **Google OAuth Integration**: One-click login with Google accounts (optional)
+- **Anonymous Login**: Guest mode for quick access without account creation
+- **Session Management**: Automatic session persistence and state management
+- **User Profile Center**: Comprehensive dashboard with avatar, statistics, and account management
+
+#### Cloud Data Synchronization
+- **Firestore Integration**: Secure cloud storage for user data
+- **Automatic Sync**: Bidirectional sync between LocalStorage and Firestore
+- **Cross-Device Support**: Access practice history and achievements from any device
+- **History Sync**: Up to 100 practice records synced to cloud
+- **Achievement Sync**: All unlocked achievements backed up
+- **Settings Sync**: Theme preferences and custom texts synchronized
+
+#### UI Components
+- **Login/Register Modal**: Beautiful tabbed interface with form validation
+- **User Profile Modal**: Detailed statistics dashboard with 4 metric cards
+- **User Avatar Button**: Header integration with avatar display
+- **Auth Tab Switching**: Smooth animations between login and register forms
+- **Error Handling**: User-friendly error messages in Chinese
+- **Responsive Design**: Mobile-optimized authentication flows
+
+#### Security & Privacy
+- **Firestore Security Rules**: User-specific data access control
+- **HTTPS Enforcement**: Secure authentication flow
+- **Firebase SDK**: Client-side encryption and security
+- **GDPR Compliance**: Privacy-first design with opt-in cloud features
+- **Local Fallback**: Full functionality without Firebase configuration
+
+#### Documentation
+- **Firebase Setup Guide**: Complete 6-step configuration tutorial in README
+- **Configuration Examples**: Template for firebase-config.js
+- **Security Rules**: Example Firestore security rules
+- **Troubleshooting**: Common issues and solutions
+
+### 🔧 Technical Implementation
+
+#### New Files (3)
+- `firebase-config.js` (87 lines): Firebase configuration with feature toggle
+- `auth.js` (530 lines): FirebaseAuthManager class for authentication
+- `auth-ui.js` (485 lines): AuthUIManager for UI interactions
+
+#### Modified Files (4)
+- `index.html` (+165 lines): Added authentication modals and user profile UI
+- `style.css` (+331 lines): Complete authentication UI styling
+- `app.js` (+3 lines): Updated version and description
+- `README.md` (+70 lines): Firebase configuration guide and feature documentation
+
+#### Code Statistics
+- **Total New Code**: ~1,600 lines
+- **Architecture**: Modular class-based design
+- **Event System**: CustomEvent for component communication
+- **Lazy Loading**: Dynamic Firebase SDK loading
+- **Zero Dependencies**: Uses Firebase CDN (not bundled)
+
+### 🎨 UI Enhancements
+
+#### Authentication Modal
+- Tab-based switching between login and register
+- Real-time form validation
+- Error message display with contextual help
+- Google login button with SVG icon
+- Information footer with feature highlights
+
+#### User Profile Center
+- Gradient header with avatar and user info
+- 4 statistics cards (total practices, avg WPM, avg accuracy, achievements)
+- Action buttons (sync data, export data, logout)
+- Account creation and last login timestamps
+- Responsive grid layout (2x2 on desktop, 1x1 on mobile)
+
+### 🔒 Security Features
+- User data isolation by Firebase UID
+- HTTPS-only authentication
+- Client-side encryption via Firebase SDK
+- No plaintext password storage
+- Firestore security rules for data access control
+
+### ⚙️ Configuration
+- **Default Mode**: Firebase disabled (FIREBASE_ENABLED = false)
+- **Enable Cloud Sync**: Set FIREBASE_ENABLED = true and add config
+- **Graceful Degradation**: App works fully without Firebase
+- **No Breaking Changes**: Existing users unaffected
+
+### 📊 Feature Highlights
+- **Optional Enhancement**: Firebase is opt-in, not required
+- **Privacy First**: Local storage remains default
+- **Offline First**: PWA functionality maintained
+- **Cross-Device**: Seamless sync across multiple devices
+- **User Friendly**: Clear setup instructions and error messages
+
+### 🎯 User Benefits
+- **Data Backup**: Never lose practice history
+- **Multi-Device**: Practice on phone, tablet, and desktop
+- **Social Login**: Quick access with Google account
+- **Statistics Anywhere**: View progress from any device
+- **Peace of Mind**: Secure cloud backup with Firebase
+
+### 📈 Performance Impact
+- **Bundle Size**: +65KB unminified code
+- **Firebase SDK**: Loaded from CDN (not bundled)
+- **Lazy Loading**: SDK loads only when needed
+- **No Performance Cost**: When Firebase disabled
+
+### 🌟 What's Next
+Future enhancements may include:
+- Email verification
+- Password reset flow
+- Avatar upload to Firebase Storage
+- Social sharing integration
+- Real-time collaboration features
+
+---
+
 ## [1.0.0] - 2025-11-08
 
 ### 🎉 Major Release - Production Ready

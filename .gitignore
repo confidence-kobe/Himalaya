@@ -42,6 +42,9 @@ build/
 .env.production
 config.local.js
 
+# Firebase Config (keep example, ignore actual config)
+firebase-config.js
+
 # Logs
 logs/
 *.log
