@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="专业的藏文打字练习应用，提高藏文输入速度和准确率。支持三种难度等级，实时统计反馈。">
+    <meta name="keywords" content="藏文,打字练习,藏语学习,བོད་ཡིག,typing practice">
+    <meta name="author" content="Himalaya">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="藏文打字">
+
     <title>བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར། - 藏文打字练习</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tibetan:wght@400;700&display=swap" rel="stylesheet">
@@ -12,30 +31,41 @@
 <body>
     <div class="container">
         <header>
+            <div class="header-controls">
+                <button id="themeToggle" class="icon-btn" aria-label="切换深色模式" title="切换深色模式">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button id="historyBtn" class="icon-btn" aria-label="查看历史记录" title="历史记录">
+                    <span class="history-icon">📊</span>
+                </button>
+                <button id="achievementsBtn" class="icon-btn" aria-label="查看成就" title="成就">
+                    <span class="achievement-icon">🏆</span>
+                </button>
+            </div>
             <h1>བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར།</h1>
             <h2>藏文打字练习</h2>
         </header>
 
-        <main>
+        <main role="main">
             <!-- 统计信息面板 -->
-            <div class="stats-panel">
-                <div class="stat-item">
+            <section class="stats-panel" aria-label="练习统计">
+                <div class="stat-item" role="status" aria-live="polite">
                     <span class="stat-label">WPM</span>
-                    <span class="stat-value" id="wpm">0</span>
+                    <span class="stat-value" id="wpm" aria-label="每分钟字符数">0</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" role="status" aria-live="polite">
                     <span class="stat-label">准确率</span>
-                    <span class="stat-value" id="accuracy">100%</span>
+                    <span class="stat-value" id="accuracy" aria-label="输入准确率">100%</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" role="status" aria-live="polite">
                     <span class="stat-label">进度</span>
-                    <span class="stat-value" id="progress">0/0</span>
+                    <span class="stat-value" id="progress" aria-label="练习进度">0/0</span>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" role="status" aria-live="polite">
                     <span class="stat-label">时间</span>
-                    <span class="stat-value" id="timer">0s</span>
+                    <span class="stat-value" id="timer" aria-label="练习用时">0s</span>
                 </div>
-            </div>
+            </section>
 
             <!-- 文本显示区域 -->
             <div class="text-display">
@@ -54,20 +84,33 @@
             </div>
 
             <!-- 控制按钮 -->
-            <div class="controls">
-                <button id="startBtn" class="btn btn-primary">开始练习</button>
-                <button id="resetBtn" class="btn btn-secondary">重新开始</button>
-                <select id="difficultySelect" class="difficulty-select">
+            <div class="controls" role="toolbar" aria-label="练习控制">
+                <button id="startBtn" class="btn btn-primary" aria-label="开始新的练习">
+                    开始练习
+                </button>
+                <button id="resetBtn" class="btn btn-secondary" aria-label="重置当前练习">
+                    重新开始
+                </button>
+                <button id="customTextBtn" class="btn btn-secondary" aria-label="自定义练习文本">
+                    自定义文本
+                </button>
+                <label for="difficultySelect" class="sr-only">选择难度</label>
+                <select id="difficultySelect" class="difficulty-select" aria-label="选择难度级别">
                     <option value="easy">简单</option>
                     <option value="medium" selected>中等</option>
                     <option value="hard">困难</option>
+                    <option value="custom">自定义</option>
                 </select>
             </div>
 
-            <!-- 结果显示 -->
-            <div id="resultModal" class="modal hidden">
+            <!-- 结果显示模态框 -->
+            <div id="resultModal" class="modal hidden" role="dialog" aria-labelledby="resultTitle" aria-modal="true">
                 <div class="modal-content">
-                    <h3>练习完成！</h3>
+                    <h3 id="resultTitle">🎉 练习完成！</h3>
+                    <div id="achievementNotice" class="achievement-notice hidden">
+                        <span class="achievement-badge">🏆</span>
+                        <p>恭喜！解锁新成就：<strong id="newAchievement"></strong></p>
+                    </div>
                     <div class="result-stats">
                         <p>速度: <strong id="finalWpm">0</strong> WPM</p>
                         <p>准确率: <strong id="finalAccuracy">0</strong>%</p>
@@ -75,15 +118,97 @@
                         <p>总字符数: <strong id="totalChars">0</strong></p>
                         <p>错误数: <strong id="errorCount">0</strong></p>
                     </div>
-                    <button id="closeModal" class="btn btn-primary">继续练习</button>
+                    <div class="modal-actions">
+                        <button id="closeModal" class="btn btn-primary">继续练习</button>
+                        <button id="shareResult" class="btn btn-secondary">分享成绩</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 历史记录模态框 -->
+            <div id="historyModal" class="modal hidden" role="dialog" aria-labelledby="historyTitle" aria-modal="true">
+                <div class="modal-content modal-large">
+                    <button class="modal-close" aria-label="关闭">&times;</button>
+                    <h3 id="historyTitle">📊 练习历史</h3>
+                    <div class="stats-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">总练习次数</span>
+                            <span class="summary-value" id="totalPractices">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">平均速度</span>
+                            <span class="summary-value" id="avgWpm">0 WPM</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">平均准确率</span>
+                            <span class="summary-value" id="avgAccuracy">0%</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">最高速度</span>
+                            <span class="summary-value" id="maxWpm">0 WPM</span>
+                        </div>
+                    </div>
+                    <div id="historyChart" class="history-chart"></div>
+                    <div id="historyList" class="history-list"></div>
+                    <div class="modal-actions">
+                        <button id="clearHistory" class="btn btn-danger">清除历史</button>
+                        <button id="exportHistory" class="btn btn-secondary">导出数据</button>
+                        <button id="closeHistory" class="btn btn-primary">关闭</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成就模态框 -->
+            <div id="achievementsModal" class="modal hidden" role="dialog" aria-labelledby="achievementsTitle" aria-modal="true">
+                <div class="modal-content modal-large">
+                    <button class="modal-close" aria-label="关闭">&times;</button>
+                    <h3 id="achievementsTitle">🏆 成就系统</h3>
+                    <div id="achievementsList" class="achievements-grid"></div>
+                    <button id="closeAchievements" class="btn btn-primary">关闭</button>
+                </div>
+            </div>
+
+            <!-- 自定义文本模态框 -->
+            <div id="customTextModal" class="modal hidden" role="dialog" aria-labelledby="customTextTitle" aria-modal="true">
+                <div class="modal-content">
+                    <button class="modal-close" aria-label="关闭">&times;</button>
+                    <h3 id="customTextTitle">✏️ 自定义练习文本</h3>
+                    <textarea
+                        id="customTextInput"
+                        class="custom-text-input"
+                        placeholder="在这里输入您想要练习的藏文文本..."
+                        rows="6"
+                    ></textarea>
+                    <div class="modal-actions">
+                        <button id="saveCustomText" class="btn btn-primary">保存并使用</button>
+                        <button id="cancelCustomText" class="btn btn-secondary">取消</button>
+                    </div>
                 </div>
             </div>
         </main>
 
-        <footer>
-            <p>提示：请确保您的系统已安装藏文输入法</p>
-            <p>支持标准藏文键盘布局</p>
+        <footer role="contentinfo">
+            <p>💡 提示：请确保您的系统已安装藏文输入法</p>
+            <p>⌨️ 支持标准藏文键盘布局 | 快捷键：ESC 重置，Ctrl+Enter 开始</p>
+            <p class="version">v1.0.0 | 开源项目 | བཀྲ་ཤིས་བདེ་ལེགས།</p>
         </footer>
+    </div>
+
+    <!-- PWA 安装提示 -->
+    <div id="installPrompt" class="install-prompt hidden">
+        <div class="install-content">
+            <p>📱 安装应用到主屏幕，随时练习藏文打字</p>
+            <div class="install-actions">
+                <button id="installBtn" class="btn btn-primary btn-sm">立即安装</button>
+                <button id="dismissInstall" class="btn btn-secondary btn-sm">稍后</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 加载提示 -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loader"></div>
+        <p>加载中...</p>
     </div>
 
     <script src="app.js"></script>
