@@ -108,20 +108,31 @@ class AuthUIManager {
      * 检查Firebase状态
      */
     checkFirebaseStatus() {
+        const loginBtn = document.getElementById('loginBtn');
+
         if (!FIREBASE_ENABLED) {
-            // 显示本地模式提示
-            const loginBtn = document.getElementById('loginBtn');
+            // 游客模式：完全隐藏登录按钮
             if (loginBtn) {
-                loginBtn.title = '本地模式（需配置Firebase启用云同步）';
+                loginBtn.style.display = 'none';
             }
 
-            // 禁用第三方登录按钮
+            // 禁用第三方登录按钮（如果模态框被直接访问）
             document.getElementById('googleLoginBtn')?.setAttribute('disabled', 'true');
             document.getElementById('anonymousLoginBtn')?.setAttribute('disabled', 'true');
+
+            console.log('🎮 游客模式已启用 - 所有功能可用，数据保存在本地');
         } else {
-            // 启用Firebase功能
+            // Firebase已启用：显示登录按钮
+            if (loginBtn) {
+                loginBtn.style.display = 'flex';
+                loginBtn.title = '登录/注册 - 启用云同步';
+            }
+
+            // 启用第三方登录按钮
             document.getElementById('googleLoginBtn')?.removeAttribute('disabled');
             document.getElementById('anonymousLoginBtn')?.removeAttribute('disabled');
+
+            console.log('🔥 Firebase云同步已启用');
         }
     }
 
@@ -129,8 +140,10 @@ class AuthUIManager {
      * 打开登录模态框
      */
     openAuthModal() {
+        // Firebase禁用时按钮已隐藏，此方法不会被调用
+        // 保留检查以防万一
         if (!FIREBASE_ENABLED) {
-            this.showMessage('⚠️ Firebase未配置', '需要先配置Firebase才能使用云同步功能。\n当前使用本地存储模式。', 'warning');
+            console.warn('Firebase未启用，无法打开登录界面');
             return;
         }
 
