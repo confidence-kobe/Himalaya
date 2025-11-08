@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="bo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར། - 藏文打字练习</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tibetan:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>བོད་ཡིག་དཔར་རྡུལ་སྦྱོང་བརྡར།</h1>
+            <h2>藏文打字练习</h2>
+        </header>
+
+        <main>
+            <!-- 统计信息面板 -->
+            <div class="stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">WPM</span>
+                    <span class="stat-value" id="wpm">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">准确率</span>
+                    <span class="stat-value" id="accuracy">100%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">进度</span>
+                    <span class="stat-value" id="progress">0/0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">时间</span>
+                    <span class="stat-value" id="timer">0s</span>
+                </div>
+            </div>
+
+            <!-- 文本显示区域 -->
+            <div class="text-display">
+                <div id="targetText" class="target-text"></div>
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="input-section">
+                <textarea
+                    id="userInput"
+                    class="user-input"
+                    placeholder="在这里输入藏文..."
+                    rows="3"
+                    disabled
+                ></textarea>
+            </div>
+
+            <!-- 控制按钮 -->
+            <div class="controls">
+                <button id="startBtn" class="btn btn-primary">开始练习</button>
+                <button id="resetBtn" class="btn btn-secondary">重新开始</button>
+                <select id="difficultySelect" class="difficulty-select">
+                    <option value="easy">简单</option>
+                    <option value="medium" selected>中等</option>
+                    <option value="hard">困难</option>
+                </select>
+            </div>
+
+            <!-- 结果显示 -->
+            <div id="resultModal" class="modal hidden">
+                <div class="modal-content">
+                    <h3>练习完成！</h3>
+                    <div class="result-stats">
+                        <p>速度: <strong id="finalWpm">0</strong> WPM</p>
+                        <p>准确率: <strong id="finalAccuracy">0</strong>%</p>
+                        <p>用时: <strong id="finalTime">0</strong> 秒</p>
+                        <p>总字符数: <strong id="totalChars">0</strong></p>
+                        <p>错误数: <strong id="errorCount">0</strong></p>
+                    </div>
+                    <button id="closeModal" class="btn btn-primary">继续练习</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>提示：请确保您的系统已安装藏文输入法</p>
+            <p>支持标准藏文键盘布局</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
