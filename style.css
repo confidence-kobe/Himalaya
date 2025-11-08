@@ -886,3 +886,333 @@ footer p {
     outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
+
+/* ========================================
+   User Authentication Styles
+   ======================================== */
+
+/* User Avatar Button */
+.user-profile-btn {
+    padding: 0;
+    overflow: hidden;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+}
+
+/* Auth Modal */
+.auth-modal {
+    max-width: 450px;
+}
+
+.auth-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.auth-tab {
+    flex: 1;
+    padding: 12px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+    color: var(--primary-color);
+}
+
+.auth-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.auth-tab:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+/* Auth Form */
+.auth-form {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--container-bg);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.error-message {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    border-radius: 6px;
+    color: #f44336;
+    font-size: 14px;
+}
+
+/* Auth Divider */
+.auth-divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.auth-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-color);
+}
+
+.auth-divider span {
+    position: relative;
+    display: inline-block;
+    padding: 0 16px;
+    background: var(--container-bg);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Auth Providers */
+.auth-providers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-provider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.btn-provider:hover:not(:disabled) {
+    background: var(--hover-bg);
+    transform: translateY(0);
+}
+
+.btn-provider:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-provider svg {
+    flex-shrink: 0;
+}
+
+/* Auth Footer */
+.auth-footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.auth-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 8px 0;
+    line-height: 1.5;
+}
+
+/* User Profile Modal */
+.profile-modal {
+    max-width: 500px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover;
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h4 {
+    margin: 0 0 6px 0;
+    color: white;
+    font-size: 20px;
+}
+
+.profile-email {
+    margin: 0 0 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+
+.profile-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Profile Stats */
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.profile-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--hover-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.profile-stat-icon {
+    font-size: 28px;
+}
+
+.profile-stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1;
+}
+
+.profile-stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Profile Actions */
+.profile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn-danger {
+    background: #f44336;
+    color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #d32f2f;
+}
+
+/* Profile Footer */
+.profile-footer {
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.profile-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 6px 0;
+}
+
+.profile-note span {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* Button Variants */
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+/* Responsive Auth UI */
+@media (max-width: 768px) {
+    .auth-modal,
+    .profile-modal {
+        max-width: 95%;
+        margin: 10px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}

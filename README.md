@@ -68,6 +68,14 @@
 - **快速加载**：资源预缓存，秒开体验
 - **推送通知**：（预留接口，可扩展）
 
+### 👤 用户认证与云同步（可选）
+- **Firebase集成**：支持邮箱/密码、Google账号、匿名登录
+- **跨设备同步**：登录后自动同步练习记录、成就和设置
+- **云端备份**：数据安全存储在Firestore云数据库
+- **个人中心**：查看统计数据、管理账户、导出数据
+- **本地优先**：未配置Firebase时自动使用本地存储模式
+- **隐私安全**：完整的安全策略和数据加密
+
 ### ⌨️ 用户体验
 - **快捷键**：ESC重置，Ctrl/Cmd+Enter开始
 - **分享功能**：完成练习后可分享成绩
@@ -104,6 +112,87 @@
 - **藏文输入法**：已安装藏文输入法
 - **字体支持**：自动加载 Google Fonts 的 Noto Serif Tibetan 字体
 - **LocalStorage**：用于保存历史记录和设置（约5MB空间）
+- **Firebase**（可选）：用于云同步功能（免费配额充足）
+
+### 🔥 Firebase配置（可选）
+
+如果您想启用跨设备云同步功能，需要配置Firebase：
+
+#### 1. 创建Firebase项目
+
+1. 访问 [Firebase Console](https://console.firebase.google.com/)
+2. 点击"添加项目"，输入项目名称
+3. 选择是否启用Google Analytics（可选）
+4. 等待项目创建完成
+
+#### 2. 获取配置信息
+
+1. 在项目概览中，点击"添加应用" → 选择"Web"
+2. 输入应用昵称（如：Himalaya Web）
+3. 复制提供的Firebase配置对象
+4. 打开 `firebase-config.js` 文件
+5. 将配置信息替换到 `firebaseConfig` 对象中
+6. 将 `FIREBASE_ENABLED` 设置为 `true`
+
+```javascript
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "your-project.firebaseapp.com",
+    projectId: "your-project-id",
+    storageBucket: "your-project.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abc123"
+};
+
+const FIREBASE_ENABLED = true; // 改为true启用
+```
+
+#### 3. 启用认证方式
+
+在Firebase Console中：
+
+1. 进入"Authentication"（身份验证）
+2. 点击"Get started"
+3. 在"Sign-in method"标签页启用需要的登录方式：
+   - **Email/Password**（邮箱密码）：最简单，推荐启用
+   - **Google**：需要配置OAuth客户端ID
+   - **Anonymous**（匿名）：无需额外配置
+
+#### 4. 启用Firestore数据库
+
+1. 进入"Firestore Database"
+2. 点击"创建数据库"
+3. 选择"以测试模式启动"（开发阶段）
+4. 选择Firestore位置（建议选择asia-east2香港）
+5. 等待数据库创建完成
+
+#### 5. 安全规则配置
+
+在Firestore的"规则"标签页，使用以下规则：
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
+#### 6. 测试配置
+
+1. 刷新应用页面
+2. 点击右上角的登录按钮
+3. 尝试注册新账号或使用Google登录
+4. 登录成功后，数据会自动同步到云端
+
+**注意事项：**
+- Firebase免费配额足够个人使用（每月5万次读取、2万次写入）
+- 未配置Firebase时，应用自动使用本地存储模式
+- 云同步功能完全可选，不影响核心打字练习功能
+- 请妥善保管Firebase配置信息，不要提交到公开仓库
 
 ## 📝 使用说明
 
@@ -249,14 +338,30 @@ sudo apt-get install ibus-m17n m17n-db m17n-contrib
 
 ```
 Himalaya/
-├── index.html          # 主HTML文件（217行）
-├── style.css           # 完整样式文件（889行，含深色模式）
-├── app.js              # JavaScript核心逻辑（900行）
-├── manifest.json       # PWA配置文件
-├── sw.js               # Service Worker
-├── icon-192.png        # PWA图标 192x192
-├── icon-512.png        # PWA图标 512x512
-└── README.md           # 项目文档
+├── index.html             # 主HTML文件（395行，含认证UI）
+├── style.css              # 完整样式文件（1219行，含深色模式和认证UI）
+├── app.js                 # JavaScript核心逻辑（900行）
+├── firebase-config.js     # Firebase配置文件（可选）
+├── auth.js                # 认证管理器（Firebase Auth集成）
+├── auth-ui.js             # 认证UI控制器（登录/注册/个人中心）
+├── manifest.json          # PWA配置文件
+├── sw.js                  # Service Worker（438行）
+├── icon-192.png           # PWA图标 192x192
+├── icon-512.png           # PWA图标 512x512
+├── robots.txt             # SEO爬虫控制
+├── sitemap.xml            # 网站地图
+├── SECURITY.md            # 安全策略
+├── .well-known/
+│   └── security.txt       # 安全联系信息
+├── .github/
+│   ├── workflows/
+│   │   └── deploy.yml     # GitHub Actions自动部署
+│   └── ISSUE_TEMPLATE/    # Issue模板
+├── README.md              # 项目文档
+├── CHANGELOG.md           # 版本更新日志
+├── CONTRIBUTING.md        # 贡献指南
+├── LICENSE                # MIT许可证
+└── .gitignore             # Git忽略文件
 ```
 
 ## 🎨 主题定制
