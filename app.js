@@ -552,7 +552,7 @@ class PracticeManager {
 
         if (!texts || texts.length === 0) {
             if (currentDifficulty === 'custom') {
-                alert('请先添加自定义文本！');
+                Toast.warning('请先添加自定义文本！', '无自定义文本');
                 elements.difficultySelect.value = 'medium';
                 currentDifficulty = 'medium';
                 this.loadNewText();
@@ -767,10 +767,10 @@ class PracticeManager {
         } else {
             // Fallback: copy to clipboard
             navigator.clipboard.writeText(text).then(() => {
-                alert('成绩已复制到剪贴板！');
+                Toast.success('成绩已复制到剪贴板！');
             }).catch((error) => {
                 console.error('Copy failed:', error);
-                alert('无法复制，请手动截图分享');
+                Toast.warning('无法复制，请手动截图分享');
             });
         }
     }
@@ -804,7 +804,7 @@ function setupEventListeners() {
         if (confirm('确定要清除所有历史记录吗？此操作无法撤销。')) {
             HistoryManager.clearHistory();
             ModalManager.hide('historyModal');
-            alert('历史记录已清除');
+            Toast.success('历史记录已清除');
         }
     });
     document.getElementById('exportHistory').addEventListener('click', () => HistoryManager.exportData());
@@ -821,9 +821,9 @@ function setupEventListeners() {
             ModalManager.hide('customTextModal');
             elements.difficultySelect.value = 'custom';
             PracticeManager.loadNewText();
-            alert('自定义文本已保存！');
+            Toast.success('自定义文本已保存！');
         } else {
-            alert('请输入有效的文本');
+            Toast.error('请输入有效的文本');
         }
     });
     document.getElementById('cancelCustomText').addEventListener('click', () => ModalManager.hide('customTextModal'));
@@ -897,3 +897,52 @@ async function init() {
 
 // Start the application
 document.addEventListener('DOMContentLoaded', init);
+
+// ========================================
+// Toast Notification System
+// ========================================
+const Toast = (() => {
+    const ICONS = { success: '✅', error: '❌', warning: '⚠️', info: '💡' };
+    const DURATION = { success: 2500, error: 4000, warning: 3000, info: 2500 };
+
+    function getContainer() {
+        let c = document.getElementById('toastContainer');
+        if (!c) {
+            c = document.createElement('div');
+            c.id = 'toastContainer';
+            c.className = 'toast-container';
+            document.body.appendChild(c);
+        }
+        return c;
+    }
+
+    function show(message, type = 'info', title = '') {
+        const container = getContainer();
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+            <span class="toast-icon">${ICONS[type]}</span>
+            <div class="toast-body">
+                ${title ? `<div class="toast-title">${title}</div>` : ''}
+                <div class="toast-message">${message}</div>
+            </div>
+            <button class="toast-close" aria-label="关闭">×</button>`;
+
+        container.appendChild(toast);
+
+        const dismiss = () => {
+            toast.classList.add('toast-out');
+            toast.addEventListener('animationend', () => toast.remove(), { once: true });
+        };
+
+        toast.querySelector('.toast-close').addEventListener('click', dismiss);
+        setTimeout(dismiss, DURATION[type]);
+    }
+
+    return {
+        success: (msg, title = '') => show(msg, 'success', title),
+        error:   (msg, title = '') => show(msg, 'error',   title),
+        warning: (msg, title = '') => show(msg, 'warning', title),
+        info:    (msg, title = '') => show(msg, 'info',    title),
+    };
+})();

@@ -476,13 +476,12 @@ class AuthUIManager {
     }
 
     /**
-     * 显示通知消息
+     * 显示通知消息（使用 Toast 系统）
      */
     showMessage(title, message, type = 'info') {
-        // 使用浏览器原生alert（简单实现）
-        alert(`${title}\n\n${message}`);
-
-        // 可以后续替换为更美观的通知组件
+        if (typeof Toast !== 'undefined') {
+            Toast[type]?.(message, title) ?? Toast.info(message, title);
+        }
         console.log(`[${type.toUpperCase()}] ${title}: ${message}`);
     }
 }
